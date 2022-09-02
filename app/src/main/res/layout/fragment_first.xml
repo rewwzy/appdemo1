@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstFragment">
+
+    <FrameLayout
+        android:id="@+id/logoContain"
+        android:layout_width="415dp"
+        android:layout_height="369dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp">
+
+        <ImageView
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_gravity="center"
+            android:paddingTop="30dp"
+            android:src="@drawable/cdjweda"
+            tools:ignore="MissingConstraints" />
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/textview_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_first_fragment"
+        app:layout_constraintBottom_toBottomOf="@+id/logoContain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoContain"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.935" />
+
+    <Button
+        android:id="@+id/button_first"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="ĐĂNG NHẬP"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint ="@color/orage"
+        app:layout_constraintTop_toBottomOf="@id/textview_first"
+        app:layout_constraintVertical_bias="0.242" />
+
+    <Button
+        android:id="@+id/button_second"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="ĐĂNG KÝ"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint ="@color/blue"
+        app:layout_constraintTop_toBottomOf="@id/button_first"
+        app:layout_constraintVertical_bias="0.125" />
+
+
+
+    <FrameLayout
+        android:id="@+id/overlayPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/button_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text=""
+                android:backgroundTint="@color/orage"
+                android:clickable="false"
+                android:alpha="0.9"/>
+    <FrameLayout
+        android:id="@+id/paddingTop"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/ask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:elevation="8dp"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:text="Trả lời câu hỏi bảo mật để mở khóa"
+        app:layout_constraintBottom_toTopOf="@id/ask_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/paddingTop"
+        app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/ask_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:elevation="8dp"
+                android:textSize="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textAlignment="center"
+                android:text="Cho quãng đường từ A đến B dài 10m, biết vận tốc đi là 15km/h, tính thời gian từ A đến B."
+                app:flow_wrapMode="chain"
+                app:layout_constraintBottom_toTopOf="@id/answer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ask"
+                app:layout_constraintVertical_bias="0.0" />
+    <EditText
+        android:id="@+id/answer"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textSize="24dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:hint="Đáp án"
+        android:inputType="number"
+        android:background="@drawable/edittextbackground"
+        app:layout_constraintBottom_toTopOf="@id/button_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ask"
+        app:layout_constraintVertical_bias="0.0"/>
+    <Button
+        android:id="@+id/button_confirm"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Xác nhận"
+        android:backgroundTint="@color/teal_200"
+        app:layout_constraintBottom_toTopOf="@id/paddingBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/answer"
+        app:layout_constraintVertical_bias="0.0"/>
+    <FrameLayout
+        android:id="@+id/paddingBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
