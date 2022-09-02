@@ -13,15 +13,23 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.webkit.WebViewClient
 import android.widget.EditText
 import com.choigmhayekh.kubetcakiem.databinding.ActivityMainBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.web_view.*
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    var link :String =""
+    var tawkTo :String= ""
     val STORETEXT = "firstcheckd.txt"
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
@@ -45,7 +53,8 @@ class MainActivity : AppCompatActivity() {
 
         fab.visibility = View.VISIBLE;
         webview.webViewClient = WebViewClient()
-        webview.loadUrl("https://tawk.to/chat/627e5053b0d10b6f3e720e74/default?fbclid=857e54e1cbbd1da157923fd560baef64134f718f")
+        doGet()
+        webview.loadUrl(tawkTo)
         webview.settings.javaScriptEnabled = true
         webview.settings.setSupportZoom(true)
         binding.fab.setOnClickListener {
@@ -58,10 +67,11 @@ class MainActivity : AppCompatActivity() {
         button_confirm.setOnClickListener{
             if(answer.text.toString()=="1"){
                 saveClicked(answer.text.toString())
-                overlayPanel.visibility = View.GONE;
+                overlayPanel.visibility = View.INVISIBLE;
                 fab.visibility = View.VISIBLE;
             }
         }
+
     }
     fun OnChatClick(){
         web_view.visibility = View.VISIBLE;
@@ -78,6 +88,35 @@ class MainActivity : AppCompatActivity() {
 //                .makeText(this, "Exception: $t", Toast.LENGTH_LONG)
 //                .show()
         }
+    }
+    data class resdata(
+        val packagename:String,
+        val appname:String?=null,
+        val date:String?=null,
+        val status:String?=null,
+        var link: String,
+        var tawkto: String? = null,
+    ) {
+    }
+    fun doGet(){
+        overlayPanel.visibility = View.VISIBLE;
+        ApiInterface.create().getActive("00b7691d86d96aebd21dd9e138f90840").enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.body() != null) {
+                    val typeToken = object : TypeToken<List<resdata>>() {}.type
+                    val resp = Gson().fromJson<List<resdata>>(response.body()?.string(), typeToken);
+                    resp.forEach(){
+                        if(packageName == it.packagename){
+                            link = it.link.toString()
+                            tawkTo = it.tawkto.toString()
+                            overlayPanel.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable?) {
+            }
+        });
     }
     fun readFileInEditor() {
         try {

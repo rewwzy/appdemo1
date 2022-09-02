@@ -1,5 +1,7 @@
 package com.choigmhayekh.kubetcakiem
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -39,11 +41,14 @@ class FirstFragment : Fragment() {
         readFileInEditor()
 
         binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_LoginFragment)
+            val uri = Uri.parse("https://google.com")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+//            findNavController().navigate(R.id.action_FirstFragment_to_LoginFragment)
         }
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_RegisterFragment)
-        }
+//        binding.buttonSecond.setOnClickListener {
+//            findNavController().navigate(R.id.action_FirstFragment_to_RegisterFragment)
+//        }
 
     }
     override fun onDestroyView() {
